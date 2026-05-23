@@ -1,10 +1,30 @@
 # 🚚 CourierMS - Courier Management System
 
-CourierMS is a full-stack **MERN Stack Courier Management System** designed to help customers book couriers, make secure online payments, track parcels live on map, download invoices, and communicate with delivery partners.
+![React](https://img.shields.io/badge/React.js-Frontend-blue)
+![Node](https://img.shields.io/badge/Node.js-Backend-green)
+![Express](https://img.shields.io/badge/Express.js-API-black)
+![MongoDB](https://img.shields.io/badge/MongoDB-Database-brightgreen)
+![Socket.IO](https://img.shields.io/badge/Socket.IO-Realtime-purple)
+![Razorpay](https://img.shields.io/badge/Razorpay-Payment-blue)
+![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black)
+![Status](https://img.shields.io/badge/Project-Live-success)
 
-The system also provides complete role-based dashboards for **Admin**, **Customer**, and **Delivery Partner** to manage courier bookings, users, assignments, delivery status, payments, reports, live tracking, and delivery verification.
+---
+
+## 📌 Project Overview
+
+**CourierMS - Courier Management System** is a full-stack **MERN Stack Courier Management System** designed to help customers book couriers, make secure online payments, track parcels live on map, download invoices, and communicate with delivery partners.
+
+The system provides complete role-based dashboards for **Admin**, **Customer**, and **Delivery Partner** to manage courier bookings, users, assignments, delivery status, payments, reports, live tracking, and delivery verification.
 
 This project is built as a resume-level full-stack application with real-world features like **JWT Authentication, Role-Based Access, Razorpay Payment Integration, Live Location Tracking, Socket.IO Chat, Invoice Generation, OTP Delivery Verification, Proof Image Upload, Admin Reports, and Fully Responsive UI**.
+
+---
+
+## 🌐 Live Demo
+
+🔗 **Live Project:**  
+[https://courier-management-system-steel.vercel.app/](https://courier-management-system-steel.vercel.app/)
 
 ---
 
@@ -129,32 +149,38 @@ This project is built as a resume-level full-stack application with real-world f
 
 ### 🎨 Frontend
 
-- React.js
-- Vite
-- Tailwind CSS
-- React Router DOM
-- Axios
-- React Toastify
-- Lucide React Icons
-- React Leaflet
-- Leaflet
-- Socket.IO Client
+| Technology         | Purpose                          |
+| ------------------ | -------------------------------- |
+| React.js           | Frontend library                 |
+| Vite               | Fast frontend build tool         |
+| Tailwind CSS       | Styling and responsive UI        |
+| React Router DOM   | Frontend routing                 |
+| Axios              | API requests                     |
+| React Toastify     | Toast notifications              |
+| Lucide React Icons | Icons                            |
+| React Leaflet      | Map integration                  |
+| Leaflet            | Live map display                 |
+| Socket.IO Client   | Real-time frontend communication |
+
+---
 
 ### ⚙️ Backend
 
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- JSON Web Token
-- Bcrypt.js
-- Razorpay
-- Nodemailer
-- Twilio
-- Multer
-- Socket.IO
-- dotenv
-- CORS
+| Technology     | Purpose                         |
+| -------------- | ------------------------------- |
+| Node.js        | Backend runtime                 |
+| Express.js     | Backend framework               |
+| MongoDB        | Database                        |
+| Mongoose       | MongoDB object modeling         |
+| JSON Web Token | Authentication                  |
+| Bcrypt.js      | Password hashing                |
+| Razorpay       | Payment gateway                 |
+| Nodemailer     | Email service                   |
+| Twilio         | SMS / OTP service               |
+| Multer         | File upload                     |
+| Socket.IO      | Real-time communication         |
+| dotenv         | Environment variable management |
+| CORS           | Cross-origin request handling   |
 
 ---
 
@@ -302,8 +328,8 @@ Courier-Management-System/
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/aryanheree/courier-management-system.git
-cd courier-management-system
+git clone https://github.com/aryangupta658/Courier-Management-System.git
+cd Courier-Management-System
 ```
 
 ---
@@ -402,6 +428,67 @@ Frontend will run on:
 
 ```txt
 http://localhost:5173
+```
+
+---
+
+## 🚀 Deployment
+
+This project is deployed on **Vercel**.
+
+### Live Deployment Link
+
+```txt
+https://courier-management-system-steel.vercel.app/
+```
+
+### Frontend Deployment Notes
+
+The frontend is deployed using Vercel.
+
+Recommended Vercel settings:
+
+```txt
+Framework Preset: Vite
+Root Directory: frontend
+Build Command: npm run build
+Output Directory: dist
+Install Command: npm install
+```
+
+Frontend environment variables:
+
+```env
+VITE_API_URL=your_backend_live_url/api
+VITE_RAZORPAY_KEY_ID=your_razorpay_key_id
+```
+
+### Backend Deployment Notes
+
+The backend should be deployed as a Node.js web service on platforms like Render.
+
+Recommended backend settings:
+
+```txt
+Root Directory: backend
+Build Command: npm install
+Start Command: npm start
+```
+
+Backend production environment variables:
+
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+CLIENT_URL=https://courier-management-system-steel.vercel.app
+RAZORPAY_KEY_ID=your_razorpay_key_id
+RAZORPAY_KEY_SECRET=your_razorpay_key_secret
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_email_app_password
+TWILIO_ACCOUNT_SID=your_twilio_account_sid
+TWILIO_AUTH_TOKEN=your_twilio_auth_token
+TWILIO_PHONE_NUMBER=your_twilio_phone_number
 ```
 
 ---
@@ -514,50 +601,6 @@ POST /api/chats/:trackingId
 8. Receiver shares OTP with delivery partner.
 9. Delivery partner verifies OTP.
 10. Courier status is updated to Delivered.
-
----
-
-## 📸 Screenshots
-
-Add your project screenshots here after uploading them to GitHub.
-
-```md
-![Landing Page](screenshots/landing.png)
-![Login Page](screenshots/login.png)
-![Register Page](screenshots/register.png)
-![Customer Dashboard](screenshots/customer-dashboard.png)
-![Book Courier](screenshots/book-courier.png)
-![My Couriers](screenshots/my-couriers.png)
-![Live Tracking](screenshots/live-tracking.png)
-![Invoice](screenshots/invoice.png)
-![Admin Dashboard](screenshots/admin-dashboard.png)
-![Manage Couriers](screenshots/manage-couriers.png)
-![Manage Users](screenshots/manage-users.png)
-![Delivery Dashboard](screenshots/delivery-dashboard.png)
-![Assigned Couriers](screenshots/assigned-couriers.png)
-```
-
-Recommended screenshots to add:
-
-```txt
-Landing Page
-Login Page
-Register Page
-Forgot Password Page
-Customer Dashboard
-Book Courier Page
-My Couriers Page
-Live Tracking Map
-Invoice Page
-Admin Dashboard
-Manage Couriers Page
-Manage Users Page
-Reports Page
-Delivery Dashboard
-Assigned Couriers Page
-Chat Page
-Mobile Responsive View
-```
 
 ---
 
@@ -702,7 +745,7 @@ Last updated time display
 - Add customer rating and review system
 - Add multi-branch courier management
 - Add dark mode
-- Deploy frontend and backend online
+- Improve production deployment pipeline
 
 ---
 
@@ -710,10 +753,21 @@ Last updated time display
 
 **Aryan Gupta**
 
-GitHub: [@aryanheree](https://github.com/aryanheree)
+GitHub: [@aryangupta658](https://github.com/aryangupta658)
 
 ---
 
 ## ✅ Project Status
 
-Completed for academic, portfolio, and resume purpose.
+✅ Project Completed  
+✅ Frontend Deployed on Vercel  
+✅ Backend API Integrated  
+✅ MongoDB Connected  
+✅ Razorpay Payment Integrated  
+✅ Live Tracking Added  
+✅ Socket.IO Chat Added  
+✅ Invoice System Added  
+✅ OTP Verification Added  
+✅ Ready for Portfolio
+
+---
