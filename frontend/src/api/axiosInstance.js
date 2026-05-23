@@ -1,23 +1,42 @@
 import axios from "axios";
 
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: API_BASE_URL,
   headers: {
-    "Content-Type": "application/json"
-  }
+    "Content-Type": "application/json",
+  },
+  withCredentials: true,
 });
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const user = JSON.parse(localStorage.getItem("courierUser"));
+    try {
+      const user = JSON.parse(localStorage.getItem("courierUser"));
 
-    if (user?.token) {
-      config.headers.Authorization = `Bearer ${user.token}`;
+      if (user?.token) {
+        config.headers.Authorization = `Bearer ${user.token}`;
+      }
+    } catch (error) {
+      localStorage.removeItem("courierUser");
     }
 
     return config;
   },
   (error) => {
+    return Promise.reject(error);
+  }
+);
+
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem("courierUser");
+    }
+
     return Promise.reject(error);
   }
 );

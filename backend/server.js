@@ -24,23 +24,49 @@ connectDB();
 const app = express();
 const server = http.createServer(app);
 
-const allowedOrigin = process.env.CLIENT_URL || "http://localhost:5173";
+/* ----------------------------- CORS SETUP ----------------------------- */
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  process.env.CLIENT_URL,
+  process.env.FRONTEND_URL,
+].filter(Boolean);
 
 app.use(
   cors({
-    origin: allowedOrigin,
+    origin: function (origin, callback) {
+      // Allow Postman, mobile apps, server-to-server requests
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error(`Not allowed by CORS: ${origin}`));
+    },
     credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
+/* ----------------------------- MIDDLEWARE ----------------------------- */
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
+/* ----------------------------- TEST ROUTE ----------------------------- */
+
 app.get("/", (req, res) => {
   res.send("Courier Management System API is running...");
 });
+
+/* ----------------------------- API ROUTES ----------------------------- */
 
 app.use("/api/auth", authRoutes);
 app.use("/api/couriers", courierRoutes);
@@ -49,18 +75,34 @@ app.use("/api/delivery", deliveryRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/chat", chatRoutes);
 
+/* ----------------------------- SOCKET.IO ----------------------------- */
+
 const io = new Server(server, {
   cors: {
-    origin: allowedOrigin,
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: function (origin, callback) {
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error(`Socket not allowed by CORS: ${origin}`));
+    },
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     credentials: true,
   },
 });
 
 socketHandler(io);
 
+/* ----------------------------- ERROR HANDLER ----------------------------- */
+
 app.use(notFound);
 app.use(errorHandler);
+
+/* ----------------------------- SERVER LISTEN ----------------------------- */
 
 const PORT = process.env.PORT || 5000;
 
